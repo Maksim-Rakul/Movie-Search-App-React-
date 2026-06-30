@@ -11,7 +11,7 @@ const Header = () => {
   };
 
   return (
-    <header className={css.header}>
+    <header className={`${css.header} container`}>
       <Logo />
       <SearchBar value={query} onChange={handleChange} type="text" />
       <button></button>

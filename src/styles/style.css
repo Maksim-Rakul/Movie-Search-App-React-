@@ -5,3 +5,14 @@ body {
 a {
     text-decoration: none;
 }
+
+img {
+    display: block;
+    width: 100%;
+}
+
+.container {
+    max-width: 345px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
