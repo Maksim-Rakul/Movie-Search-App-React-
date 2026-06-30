@@ -1,8 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import type { Movie } from "../../types/movie";
-import { Autoplay } from "swiper/modules";
+import type { Movie } from "../../../../types/movie";
+import { Autoplay, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
+import "swiper/css/scrollbar";
+import css from "./Baner.module.css";
+import BanerItem from "../BanerItem/BanerItem";
 
 interface BanerProps {
   movies: Movie[];
@@ -10,10 +13,9 @@ interface BanerProps {
 
 const Baner = ({ movies }: BanerProps) => {
   return (
-    <div>
+    <div className={css.baner}>
       <Swiper
-        modules={[Autoplay]}
-        spaceBetween={50}
+        modules={[Autoplay, Scrollbar]}
         loop={true}
         slidesPerView={1}
         autoplay={{
@@ -21,13 +23,18 @@ const Baner = ({ movies }: BanerProps) => {
           disableOnInteraction: true,
           pauseOnMouseEnter: true,
         }}
+        scrollbar={{ draggable: true }}
         speed={1000}
       >
         {movies.map((movie) => {
           const imgSrc = `https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`;
           return (
-            <SwiperSlide key={movie.id}>
-              <img src={imgSrc} alt={movie.overview} />
+            <SwiperSlide
+              key={movie.id}
+              className={css.slide}
+              style={{ backgroundImage: `url(${imgSrc})` }}
+            >
+              <BanerItem movie={movie} />
             </SwiperSlide>
           );
         })}

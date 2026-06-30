@@ -1,0 +1,14 @@
+.navBar {
+    font-size: 14px;
+    color: #b2b2b2;
+    gap: 23px;
+    display: none;
+}
+
+@media screen and (min-width: 1280px) {
+    .navBar {
+        display: flex;
+        margin-right: auto;
+        margin-left: 70px;
+    }
+ }
