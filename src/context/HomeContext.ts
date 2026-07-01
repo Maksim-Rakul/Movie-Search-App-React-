@@ -1,8 +1,10 @@
 import { createContext, useContext} from "react";
 
 interface MovieListContextType {
-  activeGenre: number;
-  setActiveGenre: (genreId: number) => void;
+    activeGenre: number;
+    setActiveGenre: (genreId: number) => void;
+    genreType: string
+    setGenreType: (type: string) => void
 };
 
 export const MovieListContext = createContext<MovieListContextType | null>(null);

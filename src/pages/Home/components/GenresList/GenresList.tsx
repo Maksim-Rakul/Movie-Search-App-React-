@@ -6,17 +6,16 @@ import css from "./GenresList.module.css";
 
 interface GenresListProps {
   genres: MovieGenre[];
-  activeBtn: number;
 }
 
-const GenresList = ({ genres, activeBtn }: GenresListProps) => {
-  const { setActiveGenre } = useMovieListContext();
+const GenresList = ({ genres }: GenresListProps) => {
+  const { activeGenre, setActiveGenre } = useMovieListContext();
   return (
     <div className={css.wrapper}>
       <ul className={css.genresList}>
         <li>
           <MyButton
-            isActive={activeBtn === 0}
+            isActive={activeGenre === 0}
             onClick={() => setActiveGenre(0)}
           >
             All

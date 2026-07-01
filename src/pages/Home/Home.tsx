@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Baner from "./components/Baner/Baner";
-import GenresList from "./components/GenresList/GenresList";
 import { useHomeTopFetch } from "./hooks/useHomeTopFetch";
 import { MovieListContext } from "../../context/HomeContext";
-import GenresNav from "./components/GenresNav/GenresNav";
 import { useMoviesListFetching } from "./hooks/useMoviesListFetching";
+import MovieList from "./components/MovieList/MovieList";
+import HomeNavBar from "./components/HomeNavBar/HomeNavBar";
 
 const Home = () => {
   const [activeGenre, setActiveGenre] = useState<number>(0);
@@ -13,11 +13,7 @@ const Home = () => {
   const { movie, genresMovie, tvGenres, isLoading, isError } =
     useHomeTopFetch();
 
-  const movieList = useMoviesListFetching(activeGenre, genreType);
-
-  useEffect(() => {
-    console.log(movieList);
-  }, [movieList]);
+  const { type, movies } = useMoviesListFetching(activeGenre, genreType);
 
   if (isLoading) {
     return <h2 style={{ color: "white" }}>Loading, please wait...</h2>;
@@ -27,15 +23,23 @@ const Home = () => {
         <Baner movies={movie} />
         <div className="container">
           {isError && <p>Some error</p>}
-          <GenresNav onClick={setGenreType} active={genreType} />
 
-          <MovieListContext.Provider value={{ activeGenre, setActiveGenre }}>
-            {genreType === "Movie" ? (
-              <GenresList genres={genresMovie} activeBtn={activeGenre} />
-            ) : (
-              <GenresList genres={tvGenres} activeBtn={activeGenre} />
-            )}
+          <MovieListContext.Provider
+            value={{ activeGenre, setActiveGenre, genreType, setGenreType }}
+          >
+            <HomeNavBar genresMovie={genresMovie} tvGenres={tvGenres} />
           </MovieListContext.Provider>
+
+          {/* <HomeNavBar
+            setGenreType={setGenreType}
+            genreType={genreType}
+            activeGenre={activeGenre}
+            setActiveGenre={setActiveGenre}
+            genresMovie={genresMovie}
+            tvGenres={tvGenres}
+          /> */}
+
+          {movies && <MovieList movies={movies} type={type} />}
         </div>
       </div>
     );
