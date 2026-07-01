@@ -1,0 +1,11 @@
+.myBtn {
+    background-color: transparent;
+    font-size: 11px;
+    color: #fff;
+    padding: 4px 17px;
+    border-radius: 12px;
+}
+
+.active {
+    background: #dc2626;
+}

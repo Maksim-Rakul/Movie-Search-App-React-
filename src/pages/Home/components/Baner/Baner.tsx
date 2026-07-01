@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Movie } from "../../../../types/movie";
-import { Autoplay, Scrollbar } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/scrollbar";
@@ -15,7 +15,7 @@ const Baner = ({ movies }: BanerProps) => {
   return (
     <div className={css.baner}>
       <Swiper
-        modules={[Autoplay, Scrollbar]}
+        modules={[Autoplay]}
         loop={true}
         slidesPerView={1}
         autoplay={{
@@ -23,7 +23,6 @@ const Baner = ({ movies }: BanerProps) => {
           disableOnInteraction: true,
           pauseOnMouseEnter: true,
         }}
-        scrollbar={{ draggable: true }}
         speed={1000}
       >
         {movies.map((movie) => {

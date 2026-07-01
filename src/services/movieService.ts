@@ -1,20 +1,50 @@
-import axios from "axios";
-import type { Movie } from "../types/movie";
+import type { Movie, MovieGenre } from "../types/movie";
+import { api } from "./api";
 
-interface MovieBanerHTTPResponse {
+interface MovieHTTPResponse {
     results: Movie[]
 }
 
-const api = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYjdjZTM4ZjYwYWMzZDU0Njk2Yzk5MTFlYmVmYmViYSIsIm5iZiI6MTc1NzI2MDgxMS43OTgsInN1YiI6IjY4YmRhYzBiNzYxOGJkMzVjMTFiYzc5ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.J7vV5ffLSgkB9qdJhbdhjkhNpcc8zxloY_nIsnnG63Q`,
-  },
-});
+interface MovieGenresHTTPResponse {
+  genres: MovieGenre[]
+}
 
-export const getBanerMovies = async (): Promise<MovieBanerHTTPResponse> => {
-    const res = await api.get<MovieBanerHTTPResponse>("/movie/now_playing");
+
+export const getBanerMovies = async (): Promise<MovieHTTPResponse> => {
+    const res = await api.get<MovieHTTPResponse>("/movie/now_playing");
 
     return res.data
+};
+
+export const getMovieGenres = async (): Promise<MovieGenresHTTPResponse> => {
+  const res = await api.get<MovieGenresHTTPResponse>('/genre/movie/list')
+
+  return res.data
+}
+
+export const getMoviesByGenres = async (genreId: number): Promise<MovieHTTPResponse> => {
+  const res = await api.get<MovieHTTPResponse>("/discover/movie", {
+    params: {
+      with_genres: genreId,
+    },
+  });
+
+  return res.data;
+};
+
+export const getPopularMovie = async (): Promise<MovieHTTPResponse> => {
+  const res = await api.get<MovieHTTPResponse>("/movie/popular");
+  return res.data;
+};
+
+export const getTopRatedMovie = async (): Promise<MovieHTTPResponse> => {
+  const res = await api.get<MovieHTTPResponse>("/movie/top_rated");
+
+  return res.data;
+};
+
+export const getSoonMovie = async (): Promise<MovieHTTPResponse> => {
+  const res = await api.get<MovieHTTPResponse>("/movie/upcoming");
+
+  return res.data;
 };

@@ -1,0 +1,9 @@
+.wrapper {
+    background-color: #0a0a0a;
+}
+
+.genresList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

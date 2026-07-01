@@ -1,0 +1,28 @@
+import type { TV, TvGenre } from "../types/tv"
+import { api } from "./api"
+
+interface TvHTTTPResponse {
+    results: TV[]
+}
+
+interface TvGenresHTTPResponse {
+  genres: TvGenre[]
+}
+
+export const getTvGenres = async (): Promise<TvGenresHTTPResponse> => {
+  const res = await api.get<TvGenresHTTPResponse>('/genre/tv/list')
+
+  return res.data
+}
+
+export const getPopularTV = async (): Promise<TvHTTTPResponse> => {
+    const res = await api.get<TvHTTTPResponse>("/tv/popular");
+    
+  return res.data;
+};
+
+export const getTopRatedTV = async (): Promise<TvHTTTPResponse> => {
+    const res = await api.get<TvHTTTPResponse>("/tv/top_rated");
+    
+  return res.data;
+};
