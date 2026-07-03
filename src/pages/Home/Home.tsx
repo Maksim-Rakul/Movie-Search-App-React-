@@ -1,21 +1,46 @@
-import { getBanerMovies } from "../../services/movieService";
+import { useState } from "react";
 import Baner from "./components/Baner/Baner";
-import { useQuery } from "@tanstack/react-query";
+import { useHomeTopFetch } from "./hooks/useHomeTopFetch";
+import { MovieListContext } from "../../context/HomeContext";
+import { useMoviesListFetching } from "./hooks/useMoviesListFetching";
+import HomeNavBar from "./components/HomeNavBar/HomeNavBar";
+import MovieCategoryList from "./components/MovieCategoryList/MovieCategoryList";
+import MovieByGenreList from "./components/MovieByGenreList/MovieByGenreList";
+import { useFetchByGenres } from "./hooks/useFetchByGenres";
 
 const Home = () => {
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["banerMove"],
-    queryFn: getBanerMovies,
-  });
+  const [activeGenre, setActiveGenre] = useState<number>(0);
+  const [genreType, setGenreType] = useState("Movie");
+
+  const { movie, genresMovie, tvGenres, isLoading, isError } =
+    useHomeTopFetch();
+  const { movies, isLoadingList } = useMoviesListFetching();
+  const { list } = useFetchByGenres({ id: activeGenre, type: genreType });
+
+  console.log(list);
 
   return (
-    <div style={{ background: "#fff" }}>
-      {isError && <p>Some error</p>}
-      {isLoading ? (
-        <h2>Loading, please wait...</h2>
-      ) : (
-        data?.results && <Baner movies={data?.results} />
-      )}
+    <div>
+      {!isLoading && <Baner movies={movie} />}
+      <div className="container">
+        {isError && <p>Some error</p>}
+
+        <MovieListContext.Provider
+          value={{ activeGenre, setActiveGenre, genreType, setGenreType }}
+        >
+          <HomeNavBar genresMovie={genresMovie} tvGenres={tvGenres} />
+        </MovieListContext.Provider>
+
+        {isLoadingList ? (
+          <p>Loading</p>
+        ) : activeGenre !== 0 ? (
+          list?.list && (
+            <MovieByGenreList moviesList={list?.list} type={list?.type} />
+          )
+        ) : (
+          <MovieCategoryList movies={movies} />
+        )}
+      </div>
     </div>
   );
 };

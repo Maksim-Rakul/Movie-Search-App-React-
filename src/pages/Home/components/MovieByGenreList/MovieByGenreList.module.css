@@ -1,0 +1,11 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+}
+
+@media screen and (min-width: 767px) {
+    .list {
+        gap: 14px;
+    }
+}
