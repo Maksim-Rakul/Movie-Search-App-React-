@@ -1,3 +1,5 @@
+import type { TV } from "./tv";
+
 export interface Movie {
     backdrop_path: string;
     genre_ids: number[];
@@ -14,4 +16,27 @@ export interface Movie {
 export interface MovieGenre {
     id: number;
     name: string
+}
+
+export interface MovieList {
+  cinema?: Movie[];
+  popular?: Movie[];
+  soon?: Movie[];
+  top?: Movie[];
+  popularTv?: TV[];
+  topTv?: TV[];
+}
+
+export interface AllMovieAndTypes {
+    movies: Movie[] | TV[];
+    type: 'movie' | 'tv'
+}
+
+export interface AllMovieFetchProps {
+    cinema: AllMovieAndTypes;
+    popular: AllMovieAndTypes;
+    topRated: AllMovieAndTypes;
+    commingSoon: AllMovieAndTypes;
+    popularTv: AllMovieAndTypes
+topRatedTv: AllMovieAndTypes
 }

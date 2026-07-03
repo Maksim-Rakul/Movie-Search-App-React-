@@ -8,6 +8,7 @@ export interface TV {
     poster_path: string;
     name: string;
     vote_average: number;
+    first_air_date: string
 }
 
 export interface TvGenre {

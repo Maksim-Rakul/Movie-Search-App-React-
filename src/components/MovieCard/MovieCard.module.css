@@ -1,0 +1,50 @@
+.card {
+ max-width: 148px;
+ position: relative;
+ cursor: pointer;
+}
+
+.cardImg {
+    height: 222px;
+    margin-bottom: 12px;
+}
+
+.cardTitle {
+    font-size: 13px;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.cardDate{
+    font-size: 11px;
+    color: #727272;
+}
+
+.cardTopWrap {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 9px;
+}
+
+.cardAverage {
+    color: #fff;
+    font-size: 10px;   
+    background-color:rgba(0, 0, 0, 0.8);
+    padding: 1px 3px;
+    border-radius: 2px;
+    display: flex;
+    gap: 3%;
+}
+
+.cardType {
+    color: #fff;
+    font-size: 10px;
+    background: rgba(220, 38, 38, 0.9);
+    padding: 4px 6px;
+    border-radius: 2px;
+}

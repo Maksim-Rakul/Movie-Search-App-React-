@@ -6,7 +6,6 @@ const Rate = ({ rate }: { rate: number }) => {
       <span>ICON</span>
       <p className={css.rate}>
         <span className={css.rateAcent}>{rate.toFixed(1)}</span>
-        /10
       </p>
     </div>
   );

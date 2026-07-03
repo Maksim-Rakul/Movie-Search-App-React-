@@ -1,41 +1,41 @@
 import { useEffect, useState } from "react"
-import type { Movie } from "../../../types/movie"
-import { getBanerMovies, getMoviesByGenres, getPopularMovie, getSoonMovie, getTopRatedMovie } from "../../../services/movieService"
-import { getPopularTV, getTopRatedTV } from "../../../services/tvService"
-import type { TV } from "../../../types/tv"
+import { getBanerMovies, getPopularMovie, getSoonMovie, getTopRatedMovie } from "../../../services/movieService"
+import type { AllMovieFetchProps} from "../../../types/movie"
+import { getPopularTV, getTopRatedTV } from "../../../services/tvService";
 
-interface AllMovie {
-    movies: Movie[] | TV[];
-    name: string;
-}
-
-export const useMoviesListFetching = (genreId: number, genreType: string) => {
-    const [allMovies, setAllMovies] = useState<AllMovie[]>([])
-
-    const [moviesByGenre, setMovieByGenre] = useState<Movie[] | TV[]>()
-
+export const useMoviesListFetching = () => {
+    const [allMovies, setAllMovies] = useState<AllMovieFetchProps>({
+        cinema: { movies: [], type: 'movie' },
+        popular: { movies: [], type: 'movie' },
+        topRated: { movies: [], type: 'movie' },
+        commingSoon: { movies: [], type: 'movie' },
+        popularTv: { movies: [], type: 'tv' },
+        topRatedTv: { movies: [], type: 'tv' }
+    })
     const [isLoadingList, setIsLoadingList] = useState(false)
     const [isErrorList, setIsErrorList] = useState(false)
 
     useEffect(() => {
         const fetching = async () => {
-            setIsErrorList(false)
-            setIsLoadingList(true)
+            
             try {
+                setIsErrorList(false)
+            setIsLoadingList(true)
                 const cinema = await getBanerMovies()
                 const popular = await getPopularMovie()
-                const top = await getTopRatedMovie()
-                const soon = await getSoonMovie()
+                const topRated = await getTopRatedMovie()
+                const commingSoon = await getSoonMovie()
                 const popularTv = await getPopularTV()
-                const topTv = await getTopRatedTV()
+                const topRatedTv = await getTopRatedTV()
 
-                setAllMovies([{movies: cinema.results, name: 'cinema'}])
-                setAllMovies((prev) => [...prev, {movies: popular.results, name: 'popular'}])
-                setAllMovies((prev) => [...prev, {movies: top.results, name: 'top'}])
-                setAllMovies((prev) => [...prev, {movies: soon.results, name: 'soon'}])
-                setAllMovies((prev) => [...prev, {movies: popularTv.results, name: 'popularTv'}])
-                setAllMovies((prev) => [...prev, {movies: topTv.results, name: 'topTv'}])
-
+                setAllMovies({
+                    cinema: {movies: cinema.results, type: 'movie'},
+                    popular: {movies: popular.results, type: 'movie'},
+                    topRated: {movies: topRated.results, type: 'movie'},
+                    commingSoon: {movies: commingSoon.results, type: 'movie'},
+                    popularTv: { movies: popularTv.results, type: 'tv' },
+                    topRatedTv: {movies: topRatedTv.results, type: 'tv'}
+                })
             } catch {
                 setIsErrorList(true)
             } finally {
@@ -43,42 +43,13 @@ export const useMoviesListFetching = (genreId: number, genreType: string) => {
             }
         }
 
-        const fetchingByGenre = async (genreId: number) => {
-            setIsErrorList(false)
-            setIsLoadingList(true)
-            try {
-                const movieByGenre = await getMoviesByGenres(genreId)
-                
-                setMovieByGenre(movieByGenre.results)
-                
-            } catch {
-                setIsErrorList(true)
-            } finally {
-                setIsLoadingList(false)  
-            }
-        }
+        fetching()
+    }, [])
 
-        if (genreId !== 0) {
-            fetchingByGenre(genreId)
-        } else {
-            fetching()
-        }
-
-    }, [genreId, genreType])
-
-    if (genreId !== 0) {
-        return {
-            isLoadingList,
-            isErrorList,
-            type: "genre",
-            movies: moviesByGenre
-            }
-    } else {
-        return {
-            isLoadingList,
-            isErrorList,
-            type: 'all',
-            movies: allMovies
-        }
+    return {
+        isLoadingList,
+        isErrorList,
+        movies: allMovies
     }
+    
 }
