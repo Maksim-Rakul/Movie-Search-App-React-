@@ -20,8 +20,6 @@ interface MovieListProps {
 }
 
 const MovieList = ({ movies, name, type }: MovieListProps) => {
-  console.log(movies);
-
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
@@ -46,10 +44,11 @@ const MovieList = ({ movies, name, type }: MovieListProps) => {
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
           }}
-          loop={true}
+          loop={false}
           pagination={{ clickable: true }}
           slidesPerView={2}
           spaceBetween={11}
+          speed={1000}
           navigation
           breakpoints={{
             320: { slidesPerView: 2 },

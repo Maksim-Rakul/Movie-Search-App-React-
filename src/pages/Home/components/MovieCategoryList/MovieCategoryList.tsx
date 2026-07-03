@@ -6,8 +6,6 @@ interface MovieCategoryListProps {
 }
 
 const MovieCategoryList = ({ movies }: MovieCategoryListProps) => {
-  console.log(movies);
-
   return (
     <div>
       <MovieList

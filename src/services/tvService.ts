@@ -26,3 +26,13 @@ export const getTopRatedTV = async (): Promise<TvHTTTPResponse> => {
     
   return res.data;
 };
+
+export const getTVByGenres = async (serialId: number) => {
+  const res = await api.get("/discover/tv", {
+    params: {
+      with_genres: serialId,
+    },
+  });
+
+  return res.data;
+};

@@ -2,6 +2,7 @@
  max-width: 148px;
  position: relative;
  cursor: pointer;
+ flex-basis: calc((100% - 11px) / 2);
 }
 
 .cardImg {
@@ -13,6 +14,8 @@
     font-size: 13px;
     color: #fff;
     margin-bottom: 8px;
+    overflow: hidden;
+    max-height: 13px;
 }
 
 .cardDate{
@@ -47,4 +50,26 @@
     background: rgba(220, 38, 38, 0.9);
     padding: 4px 6px;
     border-radius: 2px;
+}
+
+@media screen and (min-width: 767px) {
+    .card {
+        max-width: 230px;
+        flex-basis: calc((100% - 14px * 2) / 3);
+    }
+
+    .cardImg {
+        height: 344px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .card {
+        max-width: 137px;
+        flex-basis: calc((100% - 14px * 7) / 8);
+    }
+
+    .cardImg {
+        height: 205px;
+    }
 }

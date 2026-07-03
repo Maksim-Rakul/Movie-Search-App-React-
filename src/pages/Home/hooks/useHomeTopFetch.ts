@@ -17,7 +17,6 @@ export const useHomeTopFetch = () => {
             setIsLoading(true)
             try {
                 const movie = await getBanerMovies()
-            
                 const movieGenres = await getMovieGenres()
                 const tvGenres = await getTvGenres()
                 

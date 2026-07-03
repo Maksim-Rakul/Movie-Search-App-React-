@@ -10,10 +10,14 @@ interface HomeNavBarProprs {
 }
 
 const HomeNavBar = ({ genresMovie, tvGenres }: HomeNavBarProprs) => {
-  const { genreType, setGenreType } = useMovieListContext();
+  const { genreType, setGenreType, setActiveGenre } = useMovieListContext();
   return (
     <div>
-      <GenresNav onClick={setGenreType} active={genreType} />
+      <GenresNav
+        onClick={setGenreType}
+        active={genreType}
+        setAll={setActiveGenre}
+      />
 
       {genreType === "Movie" ? (
         <GenresList genres={genresMovie} />

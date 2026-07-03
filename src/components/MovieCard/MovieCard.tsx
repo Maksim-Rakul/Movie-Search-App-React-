@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import type { Movie } from "../../types/movie";
 import type { TV } from "../../types/tv";
 import Rate from "../UI/Rate/Rate";
@@ -13,13 +14,17 @@ type MovieCardProps = {
 };
 
 const MovieCard = ({ movie, type }: MovieCardProps) => {
+  const navigate = useNavigate();
   const src = `https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`;
-
-  console.log(movie);
 
   if (type === "movie" && isMovie(movie)) {
     return (
-      <li className={css.card}>
+      <li
+        className={css.card}
+        onClick={() => {
+          navigate(`/movies/:${movie.id}`);
+        }}
+      >
         <img className={css.cardImg} src={src} alt={movie.title} />
         <h3 className={css.cardTitle}>{movie.title}</h3>
         <p className={css.cardDate}>{movie.release_date}</p>
@@ -34,7 +39,12 @@ const MovieCard = ({ movie, type }: MovieCardProps) => {
   } else {
     const tvMovie = movie as TV;
     return (
-      <li className={css.card}>
+      <li
+        className={css.card}
+        onClick={() => {
+          navigate(`/tv/${tvMovie.id}`);
+        }}
+      >
         <img className={css.cardImg} src={src} alt={tvMovie.original_name} />
         <h3 className={css.cardTitle}>{tvMovie.original_name}</h3>
         <p className={css.cardDate}>{tvMovie.first_air_date}</p>

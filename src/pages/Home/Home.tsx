@@ -5,6 +5,8 @@ import { MovieListContext } from "../../context/HomeContext";
 import { useMoviesListFetching } from "./hooks/useMoviesListFetching";
 import HomeNavBar from "./components/HomeNavBar/HomeNavBar";
 import MovieCategoryList from "./components/MovieCategoryList/MovieCategoryList";
+import MovieByGenreList from "./components/MovieByGenreList/MovieByGenreList";
+import { useFetchByGenres } from "./hooks/useFetchByGenres";
 
 const Home = () => {
   const [activeGenre, setActiveGenre] = useState<number>(0);
@@ -13,31 +15,34 @@ const Home = () => {
   const { movie, genresMovie, tvGenres, isLoading, isError } =
     useHomeTopFetch();
   const { movies, isLoadingList } = useMoviesListFetching();
+  const { list } = useFetchByGenres({ id: activeGenre, type: genreType });
 
-  if (isLoading) {
-    return <h2 style={{ color: "white" }}>Loading, please wait...</h2>;
-  } else {
-    return (
-      <div>
-        <Baner movies={movie} />
-        <div className="container">
-          {isError && <p>Some error</p>}
+  console.log(list);
 
-          <MovieListContext.Provider
-            value={{ activeGenre, setActiveGenre, genreType, setGenreType }}
-          >
-            <HomeNavBar genresMovie={genresMovie} tvGenres={tvGenres} />
-          </MovieListContext.Provider>
+  return (
+    <div>
+      {!isLoading && <Baner movies={movie} />}
+      <div className="container">
+        {isError && <p>Some error</p>}
 
-          {isLoadingList ? (
-            <p>Loading</p>
-          ) : (
-            <MovieCategoryList movies={movies} />
-          )}
-        </div>
+        <MovieListContext.Provider
+          value={{ activeGenre, setActiveGenre, genreType, setGenreType }}
+        >
+          <HomeNavBar genresMovie={genresMovie} tvGenres={tvGenres} />
+        </MovieListContext.Provider>
+
+        {isLoadingList ? (
+          <p>Loading</p>
+        ) : activeGenre !== 0 ? (
+          list?.list && (
+            <MovieByGenreList moviesList={list?.list} type={list?.type} />
+          )
+        ) : (
+          <MovieCategoryList movies={movies} />
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default Home;
