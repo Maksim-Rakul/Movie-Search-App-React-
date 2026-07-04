@@ -22,7 +22,7 @@ const MovieCard = ({ movie, type }: MovieCardProps) => {
       <li
         className={css.card}
         onClick={() => {
-          navigate(`/movies/:${movie.id}`);
+          navigate(`/${type}/:${movie.id}`);
         }}
       >
         <img className={css.cardImg} src={src} alt={movie.title} />

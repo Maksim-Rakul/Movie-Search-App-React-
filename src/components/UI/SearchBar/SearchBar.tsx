@@ -1,17 +1,58 @@
+import { useQuery } from "@tanstack/react-query";
 import css from "./SearchBar.module.css";
+import { useState } from "react";
+import { getKeyword } from "../../../services/api";
+import SearchedItem from "../SearchedItem/SearchedItem";
+import { useDebounce } from "use-debounce";
 
-interface SearchBarProps {
-  value: string;
-  onChange: (query: string) => void;
-  type: string;
-  name: string;
-}
+const SearchBar = () => {
+  const [query, setQuery] = useState("");
+  const [debouncedQuery] = useDebounce(query, 300);
 
-const SearchBar = ({ onChange, ...props }: SearchBarProps) => {
+  const { data } = useQuery({
+    queryKey: ["searchQuery", debouncedQuery],
+    queryFn: () => getKeyword(debouncedQuery),
+    enabled: query !== "",
+  });
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
+    setQuery(event.target.value);
   };
-  return <input className={css.searchBar} {...props} onChange={handleChange} />;
+
+  return (
+    <div className={css.searchBarWrap}>
+      <div className={css.inputWrap}>
+        <input
+          className={css.searchBar}
+          name="search"
+          type="text"
+          onChange={handleChange}
+          value={query}
+        />
+        {query !== "" && (
+          <button onClick={() => setQuery("")} className={css.clearBtn}>
+            X
+          </button>
+        )}
+      </div>
+
+      {data?.results && (
+        <div className={css.resultWrap}>
+          <ul>
+            {data.results.map((movie) => {
+              return (
+                <SearchedItem
+                  key={movie.id}
+                  movie={movie}
+                  onClick={() => setQuery("")}
+                />
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default SearchBar;

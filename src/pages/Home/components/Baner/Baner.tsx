@@ -26,7 +26,7 @@ const Baner = ({ movies }: BanerProps) => {
         speed={1000}
       >
         {movies.map((movie) => {
-          const imgSrc = `https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`;
+          const imgSrc = `https://image.tmdb.org/t/p/w1280/${movie.poster_path}`;
           return (
             <SwiperSlide
               key={movie.id}

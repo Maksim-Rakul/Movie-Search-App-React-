@@ -14,20 +14,42 @@ interface useFetchByGenresRes {
     type: 'movie' | 'tv'
 }
 
+type FetchCallback = (id: number) => Promise<void>;
+
 export const useFetchByGenres = ({id, type}: useFetchBuGenresProps) => {
     const [list, setList] = useState<useFetchByGenresRes | null>(null)
+    const [isListLoading, setIsListLoading] = useState(false)
+    const [isListError, setIsListError] = useState(false)
+
+    async function fetchByGenres(callback: FetchCallback, id: number) {
+        try {
+            setIsListLoading(true)
+            setIsListError(false)
+
+            await callback(id)
+        } catch {
+            setIsListError(true)
+        } finally {
+            setIsListLoading(false)
+        }
+    }
 
     useEffect(() => {
+        
+        
         const fetchMovieByGenre = async (id: number) => {
-            const res = await getMoviesByGenres(id)
-
-            setList({list: res.results, type: 'movie'})
+            fetchByGenres(async (id: number) => {
+                const res = await getMoviesByGenres(id)
+                setList({list: res.results, type: 'movie'})
+            }, id)
+            
         }
 
         const fetchTVByGenre = async (id: number) => {
-            const res = await getTVByGenres(id)
-
-            setList({list: res.results, type: 'tv'})
+            fetchByGenres(async (id: number) => {
+                const res = await getTVByGenres(id)
+                setList({ list: res.results, type: 'tv' })
+            }, id)
         }
 
 
@@ -37,8 +59,9 @@ export const useFetchByGenres = ({id, type}: useFetchBuGenresProps) => {
 
         if (type === 'TV') {
             fetchTVByGenre(id)
-        }
+           }
+       
     }, [id, type])
 
-    return {list}
+    return {list, isListLoading, isListError}
 }

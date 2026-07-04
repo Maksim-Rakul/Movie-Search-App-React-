@@ -48,3 +48,4 @@ export const getSoonMovie = async (): Promise<MovieHTTPResponse> => {
 
   return res.data;
 };
+
