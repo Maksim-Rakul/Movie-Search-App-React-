@@ -5,8 +5,8 @@ import { MovieListContext } from "../../context/HomeContext";
 import { useMoviesListFetching } from "./hooks/useMoviesListFetching";
 import HomeNavBar from "./components/HomeNavBar/HomeNavBar";
 import MovieCategoryList from "./components/MovieCategoryList/MovieCategoryList";
-import MovieByGenreList from "./components/MovieByGenreList/MovieByGenreList";
 import { useFetchByGenres } from "./hooks/useFetchByGenres";
+import MovieByGenreList from "../../components/MovieByGenreList/MovieByGenreList";
 
 const Home = () => {
   const [activeGenre, setActiveGenre] = useState<number>(0);
@@ -15,7 +15,10 @@ const Home = () => {
   const { movie, genresMovie, tvGenres, isLoading, isError } =
     useHomeTopFetch();
   const { movies, isLoadingList } = useMoviesListFetching();
-  const { list } = useFetchByGenres({ id: activeGenre, type: genreType });
+  const { list } = useFetchByGenres({
+    id: activeGenre,
+    type: genreType,
+  });
 
   return (
     <div>

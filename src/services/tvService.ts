@@ -36,3 +36,9 @@ export const getTVByGenres = async (serialId: number) => {
 
   return res.data;
 };
+
+export const getTvByType = async (type: string) => {
+  const res = await api.get<TvHTTTPResponse>(`/tv/${type}`)
+
+  return res.data
+}

@@ -1,0 +1,11 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 767px) {
+    .nav {
+        justify-content: flex-start;
+        gap: 10px;
+    }
+}

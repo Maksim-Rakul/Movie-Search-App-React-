@@ -49,3 +49,8 @@ export const getSoonMovie = async (): Promise<MovieHTTPResponse> => {
   return res.data;
 };
 
+export const getMoviesByType = async (type: string) => {
+  const res = await api.get<MovieHTTPResponse>(`/movie/${type}`)
+
+  return res.data
+}

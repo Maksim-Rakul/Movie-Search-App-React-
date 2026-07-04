@@ -1,27 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { getTvByType } from "../../services/tvService";
-import css from "./TV.module.css";
-import TypeNav from "../../components/TypeNav/TypeNav";
-import MovieByGenreList from "../../components/MovieByGenreList/MovieByGenreList";
-import Loader from "../../components/Loader/Loader";
+import { getMoviesByType } from "../../../services/movieService";
+import TypeNav from "../../../components/TypeNav/TypeNav";
+import MovieByGenreList from "../../../components/MovieByGenreList/MovieByGenreList";
+import css from "./Movies.module.css";
+import Loader from "../../../components/Loader/Loader";
 
-const TV = () => {
+const Movies = () => {
   const [type, setType] = useState("popular");
   const { data, isLoading } = useQuery({
     queryKey: ["moviesPage", type],
-    queryFn: () => getTvByType(type),
+    queryFn: () => getMoviesByType(type),
   });
 
   return (
     <section className="container">
-      <div className={css.tvNav}>
+      <div className={css.moviesNav}>
         <TypeNav
           types={[
             { route: "popular", name: "Popular" },
+            { route: "now_playing", name: "Now playing" },
             { route: "top_rated", name: "Top Rated" },
-            { route: "airing_today", name: "Airing today" },
-            { route: "on_the_air", name: "On the air" },
+            { route: "upcoming", name: "Upcoming" },
           ]}
           onClick={setType}
           active={type}
@@ -36,4 +36,4 @@ const TV = () => {
   );
 };
 
-export default TV;
+export default Movies;
