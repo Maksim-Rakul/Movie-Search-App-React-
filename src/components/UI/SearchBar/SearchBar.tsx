@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import css from "./SearchBar.module.css";
 import { useState } from "react";
-import { getKeyword } from "../../../services/api";
 import SearchedItem from "../SearchedItem/SearchedItem";
 import { useDebounce } from "use-debounce";
+import { getKeyword } from "../../../services/multiService";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");

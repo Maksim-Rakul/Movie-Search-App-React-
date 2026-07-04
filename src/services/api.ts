@@ -1,9 +1,5 @@
 import axios from "axios";
-import type { MultiSearch } from "../types/multi";
 
-interface GetKeywordHTTPResponse {
-  results: MultiSearch[]
-}
 
 export const api = axios.create({
   baseURL: "https://api.themoviedb.org/3",
@@ -13,9 +9,3 @@ export const api = axios.create({
   },
 });
 
-export const getKeyword = async (keyword: string) => {
-    const res = await api.get<GetKeywordHTTPResponse>(`/search/multi?query=${keyword}`);
-    console.log(res.data);
-    
-    return res.data;
-}
