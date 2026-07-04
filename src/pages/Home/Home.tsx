@@ -17,8 +17,6 @@ const Home = () => {
   const { movies, isLoadingList } = useMoviesListFetching();
   const { list } = useFetchByGenres({ id: activeGenre, type: genreType });
 
-  console.log(list);
-
   return (
     <div>
       {!isLoading && <Baner movies={movie} />}
@@ -28,7 +26,9 @@ const Home = () => {
         <MovieListContext.Provider
           value={{ activeGenre, setActiveGenre, genreType, setGenreType }}
         >
-          <HomeNavBar genresMovie={genresMovie} tvGenres={tvGenres} />
+          {genresMovie.length > 0 && (
+            <HomeNavBar genresMovie={genresMovie} tvGenres={tvGenres} />
+          )}
         </MovieListContext.Provider>
 
         {isLoadingList ? (

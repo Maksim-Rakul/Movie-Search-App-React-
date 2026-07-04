@@ -24,7 +24,7 @@ export const publicRoutes = [
         element: Trends
     },
     {
-        path: '/movies/:movieId',
+        path: '/movie/:movieId',
         element: MovieById
     },
     {

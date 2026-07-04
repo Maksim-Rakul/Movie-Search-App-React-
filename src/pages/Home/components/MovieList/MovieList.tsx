@@ -44,7 +44,7 @@ const MovieList = ({ movies, name, type }: MovieListProps) => {
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
           }}
-          loop={false}
+          loop={true}
           pagination={{ clickable: true }}
           slidesPerView={2}
           spaceBetween={11}

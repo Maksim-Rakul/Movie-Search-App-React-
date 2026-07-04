@@ -1,7 +1,40 @@
+.searchBarWrap {
+    position: relative
+}
+
 .searchBar {
     border-radius: 30px;
     border: 1px solid black;
     padding: 6px 21px;
+outline: none;
+}
+
+.searchBar:focus {
+    border: none;
+}
+
+.resultWrap {
+    position: absolute;
+    background-color: #000;
+    z-index: 3;
+    width: 100%;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.inputWrap {
+    position: relative;
+}
+
+.clearBtn {
+    position: absolute;
+    top: 50%; 
+    right: 10px;
+    transform: translateY(-50%);
+    border: none;
+    background-color: rgb(190, 190, 190);
+    border-radius: 50%;
+    color: white;
 }
 
 @media screen and (min-width: 767px) {

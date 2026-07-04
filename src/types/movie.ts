@@ -38,5 +38,5 @@ export interface AllMovieFetchProps {
     topRated: AllMovieAndTypes;
     commingSoon: AllMovieAndTypes;
     popularTv: AllMovieAndTypes
-topRatedTv: AllMovieAndTypes
+    topRatedTv: AllMovieAndTypes
 }
