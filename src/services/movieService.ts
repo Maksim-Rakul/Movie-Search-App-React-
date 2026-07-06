@@ -54,3 +54,9 @@ export const getMoviesByType = async (type: string) => {
 
   return res.data
 }
+
+export const getMovieById = async (id: string) => {
+  const res = await api.get<Movie>(`/movie/${id}`);
+
+  return res.data;
+};
