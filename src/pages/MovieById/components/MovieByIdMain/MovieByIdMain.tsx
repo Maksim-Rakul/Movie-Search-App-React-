@@ -11,6 +11,7 @@ const MovieById = () => {
   const [active, setActive] = useState("reviews");
 
   const { movieId } = useParams<{ movieId: string }>();
+  console.log(movieId);
 
   const { data } = useQuery({
     queryKey: ["movieById", movieId],
