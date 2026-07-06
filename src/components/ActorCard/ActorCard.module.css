@@ -1,0 +1,24 @@
+.actor {
+    width: 91px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    align-items: center;
+}
+
+.actorImg {
+    height: 91px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.actorName {
+    font-size: 13px;
+    color: #fff;
+    text-align: center;
+}
+
+.actorRole {
+    font-size: 10px;
+    color: rgba(178, 178, 178, 0.4);
+}

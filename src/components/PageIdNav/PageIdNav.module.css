@@ -1,0 +1,18 @@
+.navList {
+    display: flex;
+    gap: 23px;
+    font-size: 11px;
+    color: rgba(178, 178, 178, 0.4);
+    border-bottom: 1px solid rgba(178, 178, 178, 0.4);
+    margin-bottom: 50px;
+}
+
+.navList li {
+    cursor: pointer;
+}
+
+.active {
+    color: #fff;
+    border-bottom: 2px solid #DC2626;
+    padding-bottom: 11px;
+}

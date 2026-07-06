@@ -1,0 +1,9 @@
+.galleryItem {
+    flex-basis: calc((100% - 7px) / 2);
+    height: 101px;
+}
+
+.galleryImg {
+    height: 101px;
+    border-radius: 10px;
+}

@@ -1,3 +1,6 @@
+import type { Movie } from "../types/movie";
+import type { TV } from "../types/tv";
+
 export const getYear = (date: string | undefined) => {
     if (!date) {
         return
@@ -30,4 +33,8 @@ export const converBudget = (budget: number | undefined) => {
     } else {
         return `${convertedBudget}M`
     }
+}
+
+export function isMovie(item: Movie | TV): item is Movie {
+  return (item as Movie).title !== undefined;
 }

@@ -1,0 +1,10 @@
+.pictureList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+}

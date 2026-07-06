@@ -1,0 +1,15 @@
+.videoListWrap {
+    margin-bottom: 30px;
+}
+
+.videoList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+}

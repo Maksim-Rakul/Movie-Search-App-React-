@@ -1,25 +1,23 @@
-import MovieCard from "../../../../components/MovieCard/MovieCard";
-import type { Movie } from "../../../../types/movie";
 import { SwiperSlide, Swiper } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
-import css from "./MovieList.module.css";
+import css from "./MovieSliderList.module.css";
 import "swiper/css";
-
 import { useRef } from "react";
-import type { TV } from "../../../../types/tv";
+import type { Movie } from "../../types/movie";
+import type { TV } from "../../types/tv";
+import MovieCard from "../MovieCard/MovieCard";
 
 interface AllMovieAndTypes {
   movies: Movie[] | TV[];
-  type: "movie" | "tv";
 }
 
 interface MovieListProps {
   movies: AllMovieAndTypes;
-  name: string;
+  name?: string;
   type: string;
 }
 
-const MovieList = ({ movies, name, type }: MovieListProps) => {
+const MovieSliderList = ({ movies, name, type }: MovieListProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
@@ -69,4 +67,4 @@ const MovieList = ({ movies, name, type }: MovieListProps) => {
   );
 };
 
-export default MovieList;
+export default MovieSliderList;
