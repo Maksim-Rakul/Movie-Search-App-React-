@@ -1,6 +1,6 @@
 import ActorById from "../pages/ActorById/ActorById";
 import Home from "../pages/Home/Home";
-import MovieById from "../pages/MovieById/MovieById";
+import MovieById from "../pages/MovieById/components/MovieByIdMain/MovieByIdMain";
 import Movies from "../pages/Movies/Movies/Movies";
 import Trends from "../pages/Trends/Trends";
 import TV from "../pages/TV/TV";

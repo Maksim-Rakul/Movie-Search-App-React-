@@ -9,6 +9,8 @@ export interface TV {
     name: string;
     vote_average: number;
     first_air_date: string
+    genres: TvGenre[]
+    original_language: string
 }
 
 export interface TvGenre {

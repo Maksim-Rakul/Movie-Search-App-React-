@@ -13,3 +13,25 @@ export interface MultiSearch {
     first_air_date?: string;
     release_date?: string;
 }
+
+interface Author {
+    avatar_path: string;
+    name: string;
+    rating: number;
+}
+
+export interface Review {
+    author_details: Author;
+    created_at: string
+    content: string;
+}
+
+export interface Video {
+    id: string;
+    key: string
+    name: string
+}
+
+export interface Picture {
+    file_path: string
+}

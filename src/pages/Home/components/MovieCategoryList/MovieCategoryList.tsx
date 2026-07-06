@@ -1,5 +1,6 @@
+import MovieSliderList from "../../../../components/MovieSliderList/MovieSliderList";
 import type { AllMovieFetchProps } from "../../../../types/movie";
-import MovieList from "../MovieList/MovieList";
+import css from "./MovieCategoryList.module.css";
 
 interface MovieCategoryListProps {
   movies: AllMovieFetchProps;
@@ -7,33 +8,33 @@ interface MovieCategoryListProps {
 
 const MovieCategoryList = ({ movies }: MovieCategoryListProps) => {
   return (
-    <div>
-      <MovieList
+    <div className={css.movies}>
+      <MovieSliderList
         movies={movies.cinema}
         name="Now in cinema"
         type={movies.cinema.type}
       />
-      <MovieList
+      <MovieSliderList
         movies={movies.popular}
         name="Popular movies"
         type={movies.popular.type}
       />
-      <MovieList
+      <MovieSliderList
         movies={movies.topRated}
         name="Top Rated Movie"
         type={movies.topRated.type}
       />
-      <MovieList
+      <MovieSliderList
         movies={movies.commingSoon}
         name="Comming soon"
         type={movies.commingSoon.type}
       />
-      <MovieList
+      <MovieSliderList
         movies={movies.popularTv}
         name="Comming soon"
         type={movies.popularTv.type}
       />
-      <MovieList
+      <MovieSliderList
         movies={movies.topRatedTv}
         name="Comming soon"
         type={movies.topRatedTv.type}

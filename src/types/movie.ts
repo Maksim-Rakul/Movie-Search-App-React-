@@ -11,6 +11,11 @@ export interface Movie {
     title: string;
     vote_average: number;
     vote_count: number;
+    genres: MovieGenre[]
+    runtime: string
+    original_language: string;
+    budget: number
+    tagline: string
 }
 
 export interface MovieGenre {
