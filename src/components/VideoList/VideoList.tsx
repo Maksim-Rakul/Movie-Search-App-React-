@@ -1,17 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import { getVideoByMovieId } from "../../services/movieService";
 import VideoItem from "../VideoItem/VideoItem";
 import css from "./VideoList.module.css";
 import { useState } from "react";
 import { usePagintation } from "../../hooks/usePagination";
 import PaginationsNav from "../PaginationsNav/PaginationsNav";
+import { getVideoById } from "../../services/multiService";
+import { usePageTypeContext } from "../../context/PageContext";
+import { useParams } from "react-router-dom";
 
-const VideoList = ({ id }: { id: string }) => {
+const VideoList = () => {
   const [page, setPage] = useState(0);
+
+  const { type } = usePageTypeContext();
+  const { id } = useParams<{ id: string }>();
 
   const { data } = useQuery({
     queryKey: ["media"],
-    queryFn: () => getVideoByMovieId(id),
+    queryFn: () => getVideoById(type, id!),
   });
 
   const { newData, hasAnyItems } = usePagintation({
@@ -19,8 +24,6 @@ const VideoList = ({ id }: { id: string }) => {
     page,
     perPage: 3,
   });
-
-  console.log(data);
 
   return (
     <div className={css.videoListWrap}>

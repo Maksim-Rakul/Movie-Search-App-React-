@@ -4,7 +4,7 @@ import MovieById from "../pages/MovieById/components/MovieByIdMain/MovieByIdMain
 import Movies from "../pages/Movies/Movies/Movies";
 import Trends from "../pages/Trends/Trends";
 import TV from "../pages/TV/TV";
-import TVById from "../pages/TVById/TVById";
+import TVById from "../pages/TVById/components/TVById/TVById";
 
 export const publicRoutes = [
     {
@@ -24,11 +24,11 @@ export const publicRoutes = [
         element: Trends
     },
     {
-        path: '/movie/:movieId',
+        path: '/movie/:id',
         element: MovieById
     },
     {
-        path: '/tv/:tvId',
+        path: '/tv/:id',
         element: TVById
     },
     {

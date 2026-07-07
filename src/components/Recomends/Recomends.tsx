@@ -1,16 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import MyTitle from "../UI/MyTitle/MyTitle";
-import { getRecByMovieId } from "../../services/movieService";
 import MovieSliderList from "../MovieSliderList/MovieSliderList";
+import { getRecById } from "../../services/multiService";
+import { usePageTypeContext } from "../../context/PageContext";
+import { useParams } from "react-router-dom";
 
-interface RecomendsProps {
-  id: string;
-}
+const Recomends = () => {
+  const { type } = usePageTypeContext();
 
-const Recomends = ({ id }: RecomendsProps) => {
+  const { id } = useParams<{ id: string }>();
+
   const { data } = useQuery({
     queryKey: ["recomends", id],
-    queryFn: () => getRecByMovieId(id),
+    queryFn: () => getRecById(type, id!),
   });
 
   return (

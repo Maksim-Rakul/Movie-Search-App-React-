@@ -1,3 +1,4 @@
+import { usePageTypeContext } from "../../context/PageContext";
 import type { Movie } from "../../types/movie";
 import type { TV } from "../../types/tv";
 import { converBudget, convertTime, getYear, isMovie } from "../../utils";
@@ -6,12 +7,14 @@ import css from "./PageByIdTop.module.css";
 
 interface PageByIdTop {
   content: Movie | TV;
-  type: "movie" | "tv";
+  openModal: () => void;
 }
 
-const PageByIdTop = ({ content, type }: PageByIdTop) => {
+const PageByIdTop = ({ content, openModal }: PageByIdTop) => {
   const bgImg = `https://image.tmdb.org/t/p/w1280/${content.backdrop_path}`;
   const posterImg = `https://image.tmdb.org/t/p/w1280/${content.poster_path}`;
+
+  const { type } = usePageTypeContext();
 
   const movieOrTv = () => {
     if (type === "movie" && isMovie(content)) {
@@ -68,7 +71,7 @@ const PageByIdTop = ({ content, type }: PageByIdTop) => {
 
           <p className={css.desc}>{content.overview}</p>
 
-          <button className={css.trailerBtn}>
+          <button className={css.trailerBtn} onClick={openModal}>
             <span>ic</span> Trailer
           </button>
         </div>

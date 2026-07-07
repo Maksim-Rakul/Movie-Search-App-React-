@@ -1,6 +1,7 @@
 .galleryItem {
     flex-basis: calc((100% - 7px) / 2);
     height: 101px;
+    cursor: pointer;
 }
 
 .galleryImg {
@@ -10,10 +11,7 @@
 
 @media screen and (min-width: 767px) {
     .galleryItem {
-        flex-basis: calc((100% - 9px * 2) / 3);
+        flex-basis: calc((100% - 9px * 3) / 4);
         min-height: 144px;
-    }
-
-    .galleryImg {
     }
 }

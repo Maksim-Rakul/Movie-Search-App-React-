@@ -1,17 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import { getReviewsByMovieId } from "../../services/movieService";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import css from "./Reviews.module.css";
 import { usePagintation } from "../../hooks/usePagination";
 import { useState } from "react";
 import PaginationsNav from "../PaginationsNav/PaginationsNav";
+import { getReviewsById } from "../../services/multiService";
+import { usePageTypeContext } from "../../context/PageContext";
+import { useParams } from "react-router-dom";
 
-const Reviews = ({ id }: { id: string }) => {
+const Reviews = () => {
   const [page, setPage] = useState(0);
+  const { type } = usePageTypeContext();
+
+  const { id } = useParams<{ id: string }>();
 
   const { data } = useQuery({
-    queryKey: ["reviews", id],
-    queryFn: () => getReviewsByMovieId(id),
+    queryKey: ["reviews", id, type],
+    queryFn: () => getReviewsById(type, id!),
   });
 
   const { newData, hasAnyItems } = usePagintation({

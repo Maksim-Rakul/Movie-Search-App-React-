@@ -6,7 +6,7 @@ interface usePagintationProps<T> {
     perPage: number;
 }
 
-export const usePagintation = <T,>({ data, page, perPage }: usePagintationProps<T>) => {
+export const usePagintation = <T>({ data, page, perPage }: usePagintationProps<T>) => {
     const [newData, setNewData] = useState<T[]>([]);
     const [hasAnyItems, setHasAnyItems] = useState(true)
     
