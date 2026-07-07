@@ -14,8 +14,6 @@ const MovieCard = ({ movie, type }: MovieCardProps) => {
   const navigate = useNavigate();
   const src = `https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`;
 
-  console.log(movie.id);
-
   if (type === "movie" && isMovie(movie)) {
     return (
       <li

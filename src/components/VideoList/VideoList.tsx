@@ -4,7 +4,7 @@ import VideoItem from "../VideoItem/VideoItem";
 import css from "./VideoList.module.css";
 import { useState } from "react";
 import { usePagintation } from "../../hooks/usePagination";
-import NavBtn from "../UI/NaVBtn/NavBtn";
+import PaginationsNav from "../PaginationsNav/PaginationsNav";
 
 const VideoList = ({ id }: { id: string }) => {
   const [page, setPage] = useState(0);
@@ -20,6 +20,8 @@ const VideoList = ({ id }: { id: string }) => {
     perPage: 3,
   });
 
+  console.log(data);
+
   return (
     <div className={css.videoListWrap}>
       <ul className={css.videoList}>
@@ -28,12 +30,12 @@ const VideoList = ({ id }: { id: string }) => {
             return <VideoItem key={video.id} video={video} />;
           })}
       </ul>
-      <div className={css.btns}>
-        {hasAnyItems && (
-          <NavBtn onClick={() => setPage(page + 1)}>Load more</NavBtn>
-        )}
-        {page >= 1 && <NavBtn onClick={() => setPage(0)}>Return</NavBtn>}
-      </div>
+      <PaginationsNav
+        hasAnyItems={hasAnyItems}
+        page={page}
+        onNext={() => setPage(page + 1)}
+        onPrev={() => setPage(0)}
+      />
     </div>
   );
 };

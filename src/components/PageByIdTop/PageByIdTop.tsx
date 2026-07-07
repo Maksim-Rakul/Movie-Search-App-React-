@@ -53,23 +53,25 @@ const PageByIdTop = ({ content, type }: PageByIdTop) => {
     <div className={css.bg} style={{ backgroundImage: `url(${bgImg})` }}>
       <div className={`${css.topWrap} container`}>
         <img className={css.topImg} src={posterImg} alt="" />
-        <ul className={css.genresList}>
-          {content.genres.map((genre) => {
-            return (
-              <li key={genre.id} className={css.genresItem}>
-                {genre.name}
-              </li>
-            );
-          })}
-        </ul>
+        <div>
+          <ul className={css.genresList}>
+            {content.genres.map((genre) => {
+              return (
+                <li key={genre.id} className={css.genresItem}>
+                  {genre.name}
+                </li>
+              );
+            })}
+          </ul>
 
-        {movieOrTv()}
+          {movieOrTv()}
 
-        <p className={css.desc}>{content.overview}</p>
+          <p className={css.desc}>{content.overview}</p>
 
-        <button className={css.trailerBtn}>
-          <span>ic</span> Trailer
-        </button>
+          <button className={css.trailerBtn}>
+            <span>ic</span> Trailer
+          </button>
+        </div>
       </div>
     </div>
   );

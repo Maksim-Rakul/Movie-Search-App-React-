@@ -3,8 +3,9 @@ import { getGalleryByMovieId } from "../../services/movieService";
 import { usePagintation } from "../../hooks/usePagination";
 import { useState } from "react";
 import css from "./Gallery.module.css";
-import NavBtn from "../UI/NaVBtn/NavBtn";
+// import NavBtn from "../UI/NaVBtn/NavBtn";
 import GalleryItem from "../GalleryItem/GalleryItem";
+import PaginationsNav from "../PaginationsNav/PaginationsNav";
 
 const Gallery = ({ id }: { id: string }) => {
   const [page, setPage] = useState(0);
@@ -29,10 +30,12 @@ const Gallery = ({ id }: { id: string }) => {
           })}
       </ul>
       <div className={css.btns}>
-        {hasAnyItems && (
-          <NavBtn onClick={() => setPage(page + 1)}>Load more</NavBtn>
-        )}
-        {page >= 1 && <NavBtn onClick={() => setPage(0)}>Return</NavBtn>}
+        <PaginationsNav
+          hasAnyItems={hasAnyItems}
+          page={page}
+          onNext={() => setPage(page + 1)}
+          onPrev={() => setPage(0)}
+        />
       </div>
     </div>
   );

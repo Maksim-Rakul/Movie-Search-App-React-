@@ -1,5 +1,27 @@
 .videoItem {
     border: none;
     width: 100%;
+    
+}
+
+.video {
+    width: 100%;
+    height: auto;
+    border: none;
     border-radius: 20px;
+    min-height: 188px;
+}
+
+@media screen and (min-width: 767px) {
+    .videoItem { 
+        flex-basis: calc((100% - 20px) / 2);
+        width: 323px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .videoItem {
+        flex-basis: calc((100% - 14px * 2) / 3);
+        width: 323px;
+    }
 }

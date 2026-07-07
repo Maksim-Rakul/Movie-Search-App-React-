@@ -4,12 +4,13 @@
 
 .videoList {
     display: flex;
-    flex-direction: column;
     gap: 20px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
-.btns {
-    display: flex;
-    justify-content: space-between;
+@media screen and (min-width: 1280px) {
+    .videoList {
+        gap: 14px;
+    }
 }

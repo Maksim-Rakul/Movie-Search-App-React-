@@ -19,7 +19,15 @@ const Cast = ({ id }: CastProps) => {
     <div>
       <MyTitle name="Casts" />
       {data && (
-        <Swiper loop={true} slidesPerView={3}>
+        <Swiper
+          loop={true}
+          slidesPerView={3}
+          breakpoints={{
+            320: { slidesPerView: 2 },
+            767: { slidesPerView: 7 },
+            1280: { slidesPerView: 9 },
+          }}
+        >
           {data.cast.map((actor) => {
             return (
               <SwiperSlide key={actor.id} className={css.slide}>

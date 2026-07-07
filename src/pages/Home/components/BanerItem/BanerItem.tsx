@@ -23,7 +23,7 @@ const BanerItem = ({ movie }: BanerItemProps) => {
         <div className={css.btnWrapper}>
           <button
             className={`${css.btn}`}
-            onClick={() => navigate(`/movies/${movie.id}`)}
+            onClick={() => navigate(`/movie/${movie.id}`)}
           >
             <span>ICON</span>
             Watch

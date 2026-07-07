@@ -6,12 +6,13 @@ import { getMovieById } from "../../../../services/movieService";
 import PageIdNav from "../../../../components/PageIdNav/PageIdNav";
 import { useState } from "react";
 import PageIdContent from "../PageIdContent/PageIdContent";
+import Modal from "../../../../components/Modal/Modal";
 
 const MovieById = () => {
-  const [active, setActive] = useState("reviews");
+  const [active, setActive] = useState("info");
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const { movieId } = useParams<{ movieId: string }>();
-  console.log(movieId);
 
   const { data } = useQuery({
     queryKey: ["movieById", movieId],
@@ -23,12 +24,21 @@ const MovieById = () => {
       {data && <PageByIdTop content={data} type="movie" />}
       <div className="container">
         <PageIdNav
-          items={["info", "actors", "reviews", "media"]}
+          items={[
+            { name: "Info", value: "info" },
+            { name: "Actors", value: "actors" },
+            { name: "Reviews", value: "reviews" },
+            { name: "Media", value: "media" },
+          ]}
           activeItems={active}
           onClick={(name: string) => setActive(name)}
         />
         <PageIdContent active={active} id={movieId} />
       </div>
+
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>Modal</Modal>
+      )}
     </div>
   );
 };
