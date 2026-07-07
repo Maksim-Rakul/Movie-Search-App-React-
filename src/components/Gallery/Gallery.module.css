@@ -5,6 +5,51 @@
 }
 
 .btns {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 0 10px;
+}
+
+.navBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #000000c9;
+    color: #fff;
+    border: 1px solid #414141;
+    font-size: 10px;
+}
+
+@media screen and (min-width: 767px) {
+    .pictureList {
+        gap: 9px;
+    }
+
+    .btns {
+        padding: 0 15px;
+    }
+
+    .navBtn {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .btns {
+        padding: 0 20px;
+    }
+
+    .navBtn {
+        width: 40px;
+        height: 40px;
+    }
 }

@@ -9,9 +9,9 @@ const VideoItem = ({ video }: VideoItemProps) => {
   const url = `https://www.youtube-nocookie.com/embed/${video.key}`;
 
   return (
-    <li>
+    <li className={css.videoItem}>
       <iframe
-        className={css.videoItem}
+        className={css.video}
         src={url}
         title={video.name || "Video"}
       ></iframe>

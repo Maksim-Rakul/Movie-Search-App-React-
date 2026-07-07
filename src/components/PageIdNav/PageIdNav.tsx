@@ -1,7 +1,12 @@
 import css from "./PageIdNav.module.css";
 
+interface Item {
+  name: string;
+  value: string;
+}
+
 interface PageIdNavProps {
-  items: string[];
+  items: Item[];
   activeItems: string;
   onClick: (i: string) => void;
 }
@@ -12,11 +17,11 @@ const PageIdNav = ({ items, activeItems, onClick }: PageIdNavProps) => {
       {items.map((item) => {
         return (
           <li
-            key={item}
-            onClick={() => onClick(item)}
-            className={item === activeItems ? css.active : ""}
+            key={item.value}
+            onClick={() => onClick(item.value)}
+            className={item.value === activeItems ? css.active : ""}
           >
-            {item}
+            {item.name}
           </li>
         );
       })}

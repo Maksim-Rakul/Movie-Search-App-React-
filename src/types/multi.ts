@@ -29,7 +29,8 @@ export interface Review {
 export interface Video {
     id: string;
     key: string
-    name: string
+    name: string;
+    type: string
 }
 
 export interface Picture {

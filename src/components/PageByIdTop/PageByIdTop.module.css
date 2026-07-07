@@ -81,3 +81,14 @@
     color: #fff;
     border-radius: 5px;
 }
+
+@media screen and (min-width: 1280px) {
+    .topWrap {
+        display: flex;
+        gap: 34px;
+    }
+
+    .desc {
+        max-width: 469px;
+    }
+}

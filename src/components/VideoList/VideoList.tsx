@@ -1,17 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import { getVideoByMovieId } from "../../services/movieService";
 import VideoItem from "../VideoItem/VideoItem";
 import css from "./VideoList.module.css";
 import { useState } from "react";
 import { usePagintation } from "../../hooks/usePagination";
-import NavBtn from "../UI/NaVBtn/NavBtn";
+import PaginationsNav from "../PaginationsNav/PaginationsNav";
+import { getVideoById } from "../../services/multiService";
+import { usePageTypeContext } from "../../context/PageContext";
+import { useParams } from "react-router-dom";
 
-const VideoList = ({ id }: { id: string }) => {
+const VideoList = () => {
   const [page, setPage] = useState(0);
+
+  const { type } = usePageTypeContext();
+  const { id } = useParams<{ id: string }>();
 
   const { data } = useQuery({
     queryKey: ["media"],
-    queryFn: () => getVideoByMovieId(id),
+    queryFn: () => getVideoById(type, id!),
   });
 
   const { newData, hasAnyItems } = usePagintation({
@@ -28,12 +33,12 @@ const VideoList = ({ id }: { id: string }) => {
             return <VideoItem key={video.id} video={video} />;
           })}
       </ul>
-      <div className={css.btns}>
-        {hasAnyItems && (
-          <NavBtn onClick={() => setPage(page + 1)}>Load more</NavBtn>
-        )}
-        {page >= 1 && <NavBtn onClick={() => setPage(0)}>Return</NavBtn>}
-      </div>
+      <PaginationsNav
+        hasAnyItems={hasAnyItems}
+        page={page}
+        onNext={() => setPage(page + 1)}
+        onPrev={() => setPage(0)}
+      />
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import Gallery from "../Gallery/Gallery";
 import VideoList from "../VideoList/VideoList";
 
-const Media = ({ id }: { id: string }) => {
+const Media = () => {
   return (
     <div>
-      <VideoList id={id} />
-      <Gallery id={id} />
+      <VideoList />
+      <Gallery />
     </div>
   );
 };

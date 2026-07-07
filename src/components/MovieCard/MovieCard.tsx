@@ -4,6 +4,7 @@ import type { TV } from "../../types/tv";
 import Rate from "../UI/Rate/Rate";
 import css from "./MovieCard.module.css";
 import { getYear, isMovie } from "../../utils";
+import { usePageTypeContext } from "../../context/PageContext";
 
 type MovieCardProps = {
   movie: Movie | TV;
@@ -11,16 +12,17 @@ type MovieCardProps = {
 };
 
 const MovieCard = ({ movie, type }: MovieCardProps) => {
+  const { setType } = usePageTypeContext();
+
   const navigate = useNavigate();
   const src = `https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`;
-
-  console.log(movie.id);
 
   if (type === "movie" && isMovie(movie)) {
     return (
       <li
         className={css.card}
         onClick={() => {
+          setType("movie");
           navigate(`/movie/${movie.id}`);
         }}
       >
@@ -41,6 +43,7 @@ const MovieCard = ({ movie, type }: MovieCardProps) => {
       <li
         className={css.card}
         onClick={() => {
+          setType("tv");
           navigate(`/tv/${tvMovie.id}`);
         }}
       >

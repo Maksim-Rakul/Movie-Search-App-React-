@@ -1,6 +1,4 @@
-import type { Actor } from "../types/actor";
 import type { Movie, MovieGenre } from "../types/movie";
-import type { Picture, Review, Video } from "../types/multi";
 import { api } from "./api";
 
 interface MovieHTTPResponse {
@@ -9,22 +7,6 @@ interface MovieHTTPResponse {
 
 interface MovieGenresHTTPResponse {
   genres: MovieGenre[]
-}
-
-interface MovieActorsHTTPResponse {
-  cast: Actor[]
-}
-
-interface MovieReviewsHTTPResponse {
-  results: Review[]
-}
-
-interface MovieVideoHTTPResponse {
-  results: Video[]
-}
-
-interface MoviePictureHTTPResponse {
-  posters: Picture[]
 }
 
 export const getBanerMovies = async (): Promise<MovieHTTPResponse> => {
@@ -71,39 +53,3 @@ export const getMoviesByType = async (type: string) => {
 
   return res.data
 }
-
-export const getMovieById = async (id: string) => {
-  const res = await api.get<Movie>(`/movie/${id}`);
-
-  return res.data;
-};
-
-export const getActorsByMovieId = async (id: string) => {
-  const res = await api.get<MovieActorsHTTPResponse>(`/movie/${id}/credits`);
-  
-  return res.data;
-};
-
-export const getRecByMovieId = async (id: string) => {
-  const res = await api.get<MovieHTTPResponse>(`/movie/${id}/recommendations`);
-
-  return res.data;
-};
-
-export const getReviewsByMovieId = async (id: string) => {
-  const res = await api.get<MovieReviewsHTTPResponse>(`/movie/${id}/reviews`);
-
-  return res.data;
-};
-
-export const getVideoByMovieId = async (id: string) => {
-  const res = await api.get<MovieVideoHTTPResponse>(`/movie/${id}/videos`);
-
-  return res.data;
-};
-
-export const getGalleryByMovieId = async (id: string) => {
-  const res = await api.get<MoviePictureHTTPResponse>(`/movie/${id}/images`);
-
-  return res.data;
-};

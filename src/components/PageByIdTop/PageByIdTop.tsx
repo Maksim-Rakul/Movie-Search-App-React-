@@ -1,3 +1,4 @@
+import { usePageTypeContext } from "../../context/PageContext";
 import type { Movie } from "../../types/movie";
 import type { TV } from "../../types/tv";
 import { converBudget, convertTime, getYear, isMovie } from "../../utils";
@@ -6,12 +7,14 @@ import css from "./PageByIdTop.module.css";
 
 interface PageByIdTop {
   content: Movie | TV;
-  type: "movie" | "tv";
+  openModal: () => void;
 }
 
-const PageByIdTop = ({ content, type }: PageByIdTop) => {
+const PageByIdTop = ({ content, openModal }: PageByIdTop) => {
   const bgImg = `https://image.tmdb.org/t/p/w1280/${content.backdrop_path}`;
   const posterImg = `https://image.tmdb.org/t/p/w1280/${content.poster_path}`;
+
+  const { type } = usePageTypeContext();
 
   const movieOrTv = () => {
     if (type === "movie" && isMovie(content)) {
@@ -53,23 +56,25 @@ const PageByIdTop = ({ content, type }: PageByIdTop) => {
     <div className={css.bg} style={{ backgroundImage: `url(${bgImg})` }}>
       <div className={`${css.topWrap} container`}>
         <img className={css.topImg} src={posterImg} alt="" />
-        <ul className={css.genresList}>
-          {content.genres.map((genre) => {
-            return (
-              <li key={genre.id} className={css.genresItem}>
-                {genre.name}
-              </li>
-            );
-          })}
-        </ul>
+        <div>
+          <ul className={css.genresList}>
+            {content.genres.map((genre) => {
+              return (
+                <li key={genre.id} className={css.genresItem}>
+                  {genre.name}
+                </li>
+              );
+            })}
+          </ul>
 
-        {movieOrTv()}
+          {movieOrTv()}
 
-        <p className={css.desc}>{content.overview}</p>
+          <p className={css.desc}>{content.overview}</p>
 
-        <button className={css.trailerBtn}>
-          <span>ic</span> Trailer
-        </button>
+          <button className={css.trailerBtn} onClick={openModal}>
+            <span>ic</span> Trailer
+          </button>
+        </div>
       </div>
     </div>
   );

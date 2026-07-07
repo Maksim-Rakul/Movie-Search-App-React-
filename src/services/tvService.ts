@@ -43,8 +43,3 @@ export const getTvByType = async (type: string) => {
   return res.data
 }
 
-export const getTvById = async (id: string) => {
-  const res = await api.get<TV>(`/tv/${id}`);
-
-  return res.data;
-};
