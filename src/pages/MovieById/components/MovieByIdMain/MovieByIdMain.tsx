@@ -9,6 +9,7 @@ import Modal from "../../../../components/Modal/Modal";
 import { useTrailer } from "../../../../hooks/useTrailer";
 import Trailer from "../../../../components/Trailer/Trailer";
 import { getById } from "../../../../services/multiService";
+import type { Movie } from "../../../../types/movie";
 
 const MovieById = () => {
   const [active, setActive] = useState("info");
@@ -18,7 +19,7 @@ const MovieById = () => {
 
   const { data } = useQuery({
     queryKey: ["movieById", id],
-    queryFn: () => getById("movie", id!),
+    queryFn: () => getById<Movie>("movie", id!),
   });
 
   const { trailer } = useTrailer(id!, "movie");

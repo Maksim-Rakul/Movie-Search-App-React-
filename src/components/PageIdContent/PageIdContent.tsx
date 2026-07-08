@@ -14,7 +14,7 @@ const PageIdContent = ({ active }: PageIdContentProps) => {
       return <Info />;
     case "actors":
       return <Cast />;
-    case "seassons":
+    case "seasons":
       return <Seasons />;
     case "reviews":
       return <Reviews />;

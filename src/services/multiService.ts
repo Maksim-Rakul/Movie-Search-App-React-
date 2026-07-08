@@ -45,8 +45,8 @@ export const getByTrands = async (type: string, time: string) => {
 
 // PAGE API EDNPOINTS
 
-export const getById = async (type: string, id: string) => {
-  const res = await api.get<TV | Movie>(`/${type}/${id}`);
+export const getById = async <T>(type: string, id: string): Promise<T> => {
+  const res = await api.get<T>(`/${type}/${id}`);
 
   return res.data;
 };

@@ -1,27 +1,29 @@
 import MyButton from "../UI/MyButton/MyButton";
 import css from "./TypeNav.module.css";
 
-interface BtnInfo {
-  route: string;
+interface BtnInfo<T = string | number> {
+  route: T;
   name: string;
 }
 
-interface TypeNav {
-  types: BtnInfo[];
-  onClick: (type: string) => void;
-  active: string;
+interface TypeNavProps<T = string | number> {
+  types: BtnInfo<T>[];
+  onClick: (type: T) => void;
+  active: T;
 }
 
-const TypeNav = ({ types, onClick, active }: TypeNav) => {
+const TypeNav = <T extends string | number>({
+  types,
+  onClick,
+  active,
+}: TypeNavProps<T>) => {
   return (
     <ul className={css.nav}>
       {types.map((type) => {
+        const isActive = active === type.route;
         return (
-          <li key={type.route}>
-            <MyButton
-              isActive={active === type.route}
-              onClick={() => onClick(type.route)}
-            >
+          <li key={String(type.route)}>
+            <MyButton isActive={isActive} onClick={() => onClick(type.route)}>
               {type.name}
             </MyButton>
           </li>

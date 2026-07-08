@@ -1,3 +1,9 @@
+export interface Season {
+    id: number;
+    name: string;
+    season_number: number;
+}
+
 export interface TV {
     backdrop_path: string;
     genre_ids: number[];
@@ -11,6 +17,7 @@ export interface TV {
     first_air_date: string
     genres: TvGenre[]
     original_language: string
+    seasons: Season[]
 }
 
 export interface TvGenre {

@@ -1,0 +1,25 @@
+.actorImg {
+    max-width: 197px;
+    margin-bottom: 23px;
+}
+
+.actorName {
+    font-size: 40px;
+    color: #fff;
+}
+
+.subInfoList {
+    font-size: 10px;
+    color: rgba(178, 178, 178, 0.7);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 19px;
+    max-width: 120px;
+    margin-bottom: 16px;
+}
+
+.biography {
+    font-size: 13px;
+    line-height: 1.53846;
+    color: #b2b2b2;
+}

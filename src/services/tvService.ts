@@ -42,4 +42,3 @@ export const getTvByType = async (type: string) => {
 
   return res.data
 }
-

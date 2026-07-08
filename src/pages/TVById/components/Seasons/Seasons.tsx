@@ -1,5 +1,5 @@
 const Seasons = () => {
-  return <div>SEASSONS</div>;
+  return <div>SEASONS</div>;
 };
 
 export default Seasons;

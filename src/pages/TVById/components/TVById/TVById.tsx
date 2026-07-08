@@ -9,6 +9,7 @@ import Trailer from "../../../../components/Trailer/Trailer";
 import PageIdNav from "../../../../components/PageIdNav/PageIdNav";
 import PageIdContent from "../../../../components/PageIdContent/PageIdContent";
 import { getById } from "../../../../services/multiService";
+import type { TV } from "../../../../types/tv";
 
 const TVById = () => {
   const [active, setActive] = useState("info");
@@ -18,12 +19,11 @@ const TVById = () => {
 
   const { data } = useQuery({
     queryKey: ["movieById", id],
-    queryFn: () => getById("tv", id!),
+    queryFn: () => getById<TV>("tv", id!),
   });
 
-  console.log(data);
-
   const { trailer } = useTrailer(id!, "tv");
+  if (!data) return;
 
   return (
     <div className={css.wrap}>
@@ -35,7 +35,7 @@ const TVById = () => {
         <PageIdNav
           items={[
             { name: "Info", value: "info" },
-            { name: "Seassons", value: "seassons" },
+            { name: "Seasons", value: "seasons" },
             { name: "Actors", value: "actors" },
             { name: "Reviews", value: "reviews" },
             { name: "Media", value: "media" },
