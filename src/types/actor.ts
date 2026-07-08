@@ -4,4 +4,7 @@ export interface Actor {
     known_for_department: string
     name: string;
     profile_path: string
+    biography?: string;
+    place_of_birth: string;
+    birthday: string;
 }

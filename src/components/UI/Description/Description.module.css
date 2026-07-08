@@ -1,0 +1,10 @@
+.content {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #b2b2b2;
+    overflow: hidden;
+}
+
+.content.hideContent {
+    max-height: 100px;
+}
