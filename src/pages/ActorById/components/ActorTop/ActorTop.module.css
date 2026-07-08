@@ -1,0 +1,48 @@
+.wrap {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 50px;
+}
+
+.actorImg {
+    max-width: 192px;
+    margin-bottom: 23px;
+    flex-shrink: 0;
+}
+
+.actorName {
+    font-size: 40px;
+    color: #fff;
+    margin-bottom: 23px;
+}
+
+.actorTagsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 120px;
+    margin-bottom: 16px;
+}
+
+.actorTagsItem {
+    font-size: 10px;
+    color: rgba(178, 178, 178, 0.7);
+}
+
+.actorBiography {
+    font-size: 13px;
+    line-height: 1.53846;
+    color: #b2b2b2;
+    margin-bottom: 35px;
+}
+
+@media screen and (min-width: 1280px) {
+    .wrap {
+        display: flex;
+        gap: 30px;
+    }
+
+        .descWrap {
+            max-width: 420px;
+        }
+}

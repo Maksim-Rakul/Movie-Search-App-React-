@@ -32,7 +32,7 @@ export const publicRoutes = [
         element: TVById
     },
     {
-        path: '/actor/:actorId',
+        path: '/actor/:id',
         element: ActorById
     }
 
