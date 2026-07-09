@@ -5,6 +5,9 @@
     height: 26px;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
+    color: #fff;
+    font-size: 20px;
 }
 
 .backdrop {
