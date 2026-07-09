@@ -90,6 +90,8 @@
     font-size: 13px;
     color: #fff;
     border-radius: 5px;
+    display: flex;
+    align-items: center;gap: 5px;
 }
 
 @media screen and (min-width: 1280px) {

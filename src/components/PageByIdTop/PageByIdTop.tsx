@@ -55,9 +55,15 @@ const PageByIdTop = ({ content, openModal }: PageByIdTop) => {
           <Rate rate={tv.vote_average} />
 
           <div className={css.subInfo}>
-            <p>{getYear(tv.first_air_date)}</p>
+            <div className={css.subInfoWrap}>
+              <img src="/icons/date.svg" alt="" className={css.icon} />
+              <p>{getYear(tv.first_air_date)}</p>
+            </div>
 
-            <p>{tv.original_language.toUpperCase()}</p>
+            <div className={css.subInfoWrap}>
+              <img src="/icons/language.svg" alt="" className={css.icon} />
+              <p>{tv.original_language.toUpperCase()}</p>
+            </div>
           </div>
         </div>
       );
@@ -84,7 +90,8 @@ const PageByIdTop = ({ content, openModal }: PageByIdTop) => {
           <p className={css.desc}>{content.overview}</p>
 
           <button className={css.trailerBtn} onClick={openModal}>
-            <span>ic</span> Trailer
+            <img src="/icons/whitePlay.svg" alt="" className={css.icon} />{" "}
+            Trailer
           </button>
         </div>
       </div>
