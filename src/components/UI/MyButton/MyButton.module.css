@@ -4,8 +4,19 @@
     color: #fff;
     padding: 4px 17px;
     border-radius: 12px;
+    transition: background-color 250ms ease-in-out;
+}
+
+.myBtn:hover {
+    background-color: #49494993;
 }
 
 .active {
     background: #dc2626;
+}
+
+@media screen and (min-width: 1280px) {
+    .myBtn {
+        font-size: 14px;
+    }
 }

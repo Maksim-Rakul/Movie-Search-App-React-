@@ -1,4 +1,3 @@
-import Seasons from "../../pages/TVById/components/Seasons/Seasons";
 import Cast from "../Cast/Cast";
 import Info from "../Info/Info";
 import Media from "../Media/Media";
@@ -14,8 +13,6 @@ const PageIdContent = ({ active }: PageIdContentProps) => {
       return <Info />;
     case "actors":
       return <Cast />;
-    case "seassons":
-      return <Seasons />;
     case "reviews":
       return <Reviews />;
     case "media":

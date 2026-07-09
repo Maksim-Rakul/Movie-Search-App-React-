@@ -9,6 +9,10 @@ import type { Picture } from "../../types/multi";
 import { getImgById } from "../../services/multiService";
 import { usePageTypeContext } from "../../context/PageContext";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader/Loader";
+import NotFound from "../NotFound/NotFound";
+import MyTitle from "../UI/MyTitle/MyTitle";
+import Error from "../Error/Error";
 
 const Gallery = () => {
   const [page, setPage] = useState(0);
@@ -18,7 +22,7 @@ const Gallery = () => {
 
   const { type } = usePageTypeContext();
 
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["gallery", id],
     queryFn: () => getImgById(type, id!),
   });
@@ -28,6 +32,13 @@ const Gallery = () => {
     page,
     perPage: 6,
   });
+
+  if (isLoading) return <Loader />;
+  if (isError) return <Error />;
+
+  if (!data?.posters || data.posters.length === 0) {
+    return <NotFound />;
+  }
 
   const handleNext = () => {
     if (selectedImg >= newData.length - 1) {
@@ -51,43 +62,48 @@ const Gallery = () => {
 
   return (
     <div className={css.pictureListWrap}>
-      <ul className={css.pictureList}>
-        {data &&
-          newData.map((picture, index) => {
-            return (
-              <GalleryItem
-                key={picture.file_path}
-                picture={picture}
-                onClick={setSelectedImg}
-                openModal={() => setIsModalOpen(true)}
-                index={index}
-              />
-            );
-          })}
-      </ul>
+      <MyTitle name="Gallery" />
+      {newData.length > 0 && (
+        <div>
+          <ul className={css.pictureList}>
+            {data &&
+              newData.map((picture, index) => {
+                return (
+                  <GalleryItem
+                    key={picture.file_path}
+                    picture={picture}
+                    onClick={setSelectedImg}
+                    openModal={() => setIsModalOpen(true)}
+                    index={index}
+                  />
+                );
+              })}
+          </ul>
 
-      <PaginationsNav
-        hasAnyItems={hasAnyItems}
-        page={page}
-        onNext={() => setPage(page + 1)}
-        onPrev={() => setPage(0)}
-      />
-
-      {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
-          <img
-            src={`https://image.tmdb.org/t/p/w1280/${newData[selectedImg].file_path}`}
-            alt=""
+          <PaginationsNav
+            hasAnyItems={hasAnyItems}
+            page={page}
+            onNext={() => setPage(page + 1)}
+            onPrev={() => setPage(0)}
           />
-          <div className={css.btns}>
-            <button className={`${css.navBtn}`} onClick={handlePrev}>
-              {"<"}
-            </button>
-            <button className={`${css.navBtn}`} onClick={handleNext}>
-              {">"}
-            </button>
-          </div>
-        </Modal>
+
+          {isModalOpen && (
+            <Modal onClose={() => setIsModalOpen(false)}>
+              <img
+                src={`https://image.tmdb.org/t/p/w1280/${newData[selectedImg].file_path}`}
+                alt=""
+              />
+              <div className={css.btns}>
+                <button className={`${css.navBtn}`} onClick={handlePrev}>
+                  {"<"}
+                </button>
+                <button className={`${css.navBtn}`} onClick={handleNext}>
+                  {">"}
+                </button>
+              </div>
+            </Modal>
+          )}
+        </div>
       )}
     </div>
   );

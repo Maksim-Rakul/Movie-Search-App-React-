@@ -5,6 +5,7 @@ import Rate from "../UI/Rate/Rate";
 import css from "./MovieCard.module.css";
 import { getYear, isMovie } from "../../utils";
 import { usePageTypeContext } from "../../context/PageContext";
+import Untitled from "../Untitled/Untitled";
 
 type MovieCardProps = {
   movie: Movie | TV;
@@ -26,7 +27,20 @@ const MovieCard = ({ movie, type }: MovieCardProps) => {
           navigate(`/movie/${movie.id}`);
         }}
       >
-        <img className={css.cardImg} src={src} alt={movie.title} />
+        <div className={css.imgWrap}>
+          {movie.backdrop_path ? (
+            <img src={src} className={css.cardImg} alt={movie.original_title} />
+          ) : (
+            <Untitled />
+          )}
+          <div className={css.playBtn}>
+            <img
+              src="/icons/whitePlay.svg"
+              alt="play-btn"
+              className={css.playIcon}
+            />
+          </div>
+        </div>
         <h3 className={css.cardTitle}>{movie.title}</h3>
         <p className={css.cardDate}>{getYear(movie.release_date)}</p>
         <div className={css.cardTopWrap}>
@@ -47,7 +61,24 @@ const MovieCard = ({ movie, type }: MovieCardProps) => {
           navigate(`/tv/${tvMovie.id}`);
         }}
       >
-        <img className={css.cardImg} src={src} alt={tvMovie.original_name} />
+        <div className={css.imgWrap}>
+          {movie.backdrop_path ? (
+            <img
+              src={src}
+              className={css.cardImg}
+              alt={tvMovie.original_name}
+            />
+          ) : (
+            <Untitled />
+          )}
+          <div className={css.playBtn}>
+            <img
+              src="/icons/whitePlay.svg"
+              alt="play-btn"
+              className={css.playIcon}
+            />
+          </div>
+        </div>
         <h3 className={css.cardTitle}>{tvMovie.original_name}</h3>
         <p className={css.cardDate}>{getYear(tvMovie.first_air_date)}</p>
         <div className={css.cardTopWrap}>

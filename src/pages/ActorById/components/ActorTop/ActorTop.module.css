@@ -1,7 +1,9 @@
 .wrap {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     margin-bottom: 50px;
+    margin-top: 30px;
 }
 
 .actorImg {
@@ -39,10 +41,22 @@
 @media screen and (min-width: 1280px) {
     .wrap {
         display: flex;
+        flex-direction: row;
         gap: 30px;
     }
 
-        .descWrap {
-            max-width: 420px;
-        }
+    .descWrap {
+        max-width: 420px;
+    }
+
+    .actorTagsItem {
+        font-size: 12px;
+    }
+
+    .actorBiography {
+        font-size: 15px;
+        line-height: 1.53846;
+        color: #b2b2b2;
+        margin-bottom: 35px;
+    }
 }

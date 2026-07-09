@@ -1,13 +1,20 @@
 .rateWrap {
     display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .rate {
     color: #b2b2b2;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .rateAcent {
     color: #facc15;
+}
+
+.icon {
+    width: 15px;
+    height: 13px;
 }

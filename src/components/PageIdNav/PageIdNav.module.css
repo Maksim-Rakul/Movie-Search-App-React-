@@ -9,10 +9,21 @@
 
 .navList li {
     cursor: pointer;
+    transition: color 250ms ease-in-out;
 }
 
 .active {
     color: #fff;
     border-bottom: 2px solid #DC2626;
     padding-bottom: 11px;
+}
+
+.navList li:hover {
+    color: #fff;
+}
+
+@media screen and (min-width: 1280px) {
+    .navList {
+        font-size: 14px;
+    }
 }

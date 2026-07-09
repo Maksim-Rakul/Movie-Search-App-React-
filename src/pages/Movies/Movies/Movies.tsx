@@ -3,7 +3,6 @@ import { useState } from "react";
 import { getMoviesByType } from "../../../services/movieService";
 import TypeNav from "../../../components/TypeNav/TypeNav";
 import MovieByGenreList from "../../../components/MovieByGenreList/MovieByGenreList";
-import css from "./Movies.module.css";
 import Loader from "../../../components/Loader/Loader";
 
 const Movies = () => {
@@ -15,18 +14,17 @@ const Movies = () => {
 
   return (
     <section className="container">
-      <div className={css.moviesNav}>
-        <TypeNav
-          types={[
-            { route: "popular", name: "Popular" },
-            { route: "now_playing", name: "Now playing" },
-            { route: "top_rated", name: "Top Rated" },
-            { route: "upcoming", name: "Upcoming" },
-          ]}
-          onClick={setType}
-          active={type}
-        />
-      </div>
+      <TypeNav
+        types={[
+          { route: "popular", name: "Popular" },
+          { route: "now_playing", name: "Now playing" },
+          { route: "top_rated", name: "Top Rated" },
+          { route: "upcoming", name: "Upcoming" },
+        ]}
+        onClick={setType}
+        active={type}
+      />
+
       {isLoading && <Loader />}
 
       {data?.results && (

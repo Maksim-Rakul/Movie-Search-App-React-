@@ -10,13 +10,11 @@ interface MovieByGenreListProps {
 
 const MovieByGenreList = ({ moviesList, type }: MovieByGenreListProps) => {
   return (
-    <div>
-      <ul className={css.list}>
-        {moviesList.map((movie) => {
-          return <MovieCard movie={movie} type={type} key={movie.id} />;
-        })}
-      </ul>
-    </div>
+    <ul className={css.list}>
+      {moviesList.map((movie) => {
+        return <MovieCard movie={movie} type={type} key={movie.id} />;
+      })}
+    </ul>
   );
 };
 

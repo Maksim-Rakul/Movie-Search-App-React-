@@ -22,17 +22,18 @@ const BanerItem = ({ movie }: BanerItemProps) => {
         <p className={`${css.desc} ${isMore && css.open}`}>{movie.overview}</p>
         <div className={css.btnWrapper}>
           <button
-            className={`${css.btn}`}
+            className={`${css.btn}  ${css.watch}`}
             onClick={() => navigate(`/movie/${movie.id}`)}
           >
-            <span>ICON</span>
+            <img src="/icons/play.svg" alt="" className={css.icon} />
             Watch
           </button>
           <button
             className={`${css.btn} ${css.more}`}
             onClick={() => setIsMore(!isMore)}
           >
-            <span>ICON</span>
+            <img src="/icons/more.svg" alt="" className={css.icon} />
+
             {isMore ? "Less" : "More"}
           </button>
         </div>
