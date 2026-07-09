@@ -14,11 +14,13 @@ const App = () => {
       <div className={css.wrapper}>
         <PageTypeContext.Provider value={{ type, setType }}>
           <Header />
-          <Routes>
-            {publicRoutes.map((route) => {
-              return <Route path={route.path} element={<route.element />} />;
-            })}
-          </Routes>
+          <main>
+            <Routes>
+              {publicRoutes.map((route) => {
+                return <Route path={route.path} element={<route.element />} />;
+              })}
+            </Routes>
+          </main>
         </PageTypeContext.Provider>
       </div>
     </BrowserRouter>

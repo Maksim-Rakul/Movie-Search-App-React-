@@ -3,3 +3,9 @@
     color: #fff;
     margin-bottom: 15px;
 }
+
+@media screen and (min-width: 1280px) {
+    .myTitle {
+        font-size: 15px;
+    }
+}

@@ -5,9 +5,37 @@
  flex-basis: calc((100% - 11px) / 2);
 }
 
+.imgWrap {
+    position: relative;
+}
+
+.playBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: #a1a1a1d5;
+    z-index: 3;
+    border-radius: 50%;
+    border: 2px solid #fff;
+        display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.playIcon {
+    width: 10px;
+    height: 10px;
+    fill: #fff;
+    color: #fff;
+}
+
 .cardImg {
     height: 222px;
     margin-bottom: 12px;
+    transition: opacity 250ms ease-in-out;
 }
 
 .cardTitle {
@@ -50,6 +78,14 @@
     background: rgba(220, 38, 38, 0.9);
     padding: 4px 6px;
     border-radius: 2px;
+}
+
+.card:hover .cardImg {
+    opacity: 0.5;
+}
+
+.card:hover .playBtn {
+    display: flex;
 }
 
 @media screen and (min-width: 767px) {

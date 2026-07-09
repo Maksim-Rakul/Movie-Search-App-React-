@@ -23,10 +23,22 @@ const PageByIdTop = ({ content, openModal }: PageByIdTop) => {
           <h2 className={css.title}>{content.title}</h2>
 
           <div className={css.subInfo}>
-            <p>{getYear(content.release_date)}</p>
-            <p>{convertTime(content.runtime)}</p>
-            <p>{content.original_language?.toUpperCase()}</p>
-            <p>{converBudget(content.budget)}</p>
+            <div className={css.subInfoWrap}>
+              <img src="/icons/date.svg" alt="" className={css.icon} />
+              <p>{getYear(content.release_date)}</p>
+            </div>
+            <div className={css.subInfoWrap}>
+              <img src="/icons/clock.svg" alt="" className={css.icon} />
+              <p>{convertTime(content.runtime)}</p>
+            </div>
+            <div className={css.subInfoWrap}>
+              <img src="/icons/language.svg" alt="" className={css.icon} />
+              <p>{content.original_language?.toUpperCase()}</p>
+            </div>
+            <div className={css.subInfoWrap}>
+              <img src="/icons/budget.svg" alt="" className={css.icon} />
+              <p>{converBudget(content.budget)}</p>
+            </div>
           </div>
 
           <Rate rate={content.vote_average} />

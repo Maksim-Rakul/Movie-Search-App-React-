@@ -5,16 +5,21 @@ import { getActorById } from "../../services/actorService";
 import { useState } from "react";
 import PageIdNav from "../../components/PageIdNav/PageIdNav";
 import ActorIdContent from "./components/ActorContent/ActorContent";
+import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
 
 const ActorById = () => {
   const [active, setActive] = useState("movies");
 
   const { id } = useParams();
 
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["actor", id],
     queryFn: () => getActorById(id!),
   });
+
+  if (isLoading) return <Loader />;
+  if (isError) return <Error />;
 
   return (
     <div className="container">

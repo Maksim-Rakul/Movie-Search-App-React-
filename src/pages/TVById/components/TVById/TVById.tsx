@@ -9,16 +9,21 @@ import Trailer from "../../../../components/Trailer/Trailer";
 import PageIdNav from "../../../../components/PageIdNav/PageIdNav";
 import PageIdContent from "../../../../components/PageIdContent/PageIdContent";
 import { getById } from "../../../../services/multiService";
+import { usePageTypeContext } from "../../../../context/PageContext";
 
 const TVById = () => {
   const [active, setActive] = useState("info");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { id } = useParams<{ id: string }>();
+  const { setType } = usePageTypeContext();
 
   const { data } = useQuery({
     queryKey: ["movieById", id],
-    queryFn: () => getById("tv", id!),
+    queryFn: async () => {
+      await setType("tv");
+      return getById("tv", id!);
+    },
   });
 
   console.log(data);
@@ -35,7 +40,6 @@ const TVById = () => {
         <PageIdNav
           items={[
             { name: "Info", value: "info" },
-            { name: "Seassons", value: "seassons" },
             { name: "Actors", value: "actors" },
             { name: "Reviews", value: "reviews" },
             { name: "Media", value: "media" },

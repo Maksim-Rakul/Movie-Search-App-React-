@@ -29,10 +29,12 @@ const SearchBar = () => {
           onChange={handleChange}
           value={query}
         />
-        {query !== "" && (
+        {query !== "" ? (
           <button onClick={() => setQuery("")} className={css.clearBtn}>
             X
           </button>
+        ) : (
+          <img src="/icons/loop.svg" alt="" className={css.icon} />
         )}
       </div>
 

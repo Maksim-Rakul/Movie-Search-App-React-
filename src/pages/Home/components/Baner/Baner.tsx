@@ -13,7 +13,7 @@ interface BanerProps {
 
 const Baner = ({ movies }: BanerProps) => {
   return (
-    <div className={css.baner}>
+    <section className={css.baner}>
       <Swiper
         modules={[Autoplay]}
         loop={true}
@@ -26,7 +26,7 @@ const Baner = ({ movies }: BanerProps) => {
         speed={1000}
       >
         {movies.map((movie) => {
-          const imgSrc = `https://image.tmdb.org/t/p/w1280/${movie.poster_path}`;
+          const imgSrc = `https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`;
           return (
             <SwiperSlide
               key={movie.id}
@@ -38,7 +38,7 @@ const Baner = ({ movies }: BanerProps) => {
           );
         })}
       </Swiper>
-    </div>
+    </section>
   );
 };
 

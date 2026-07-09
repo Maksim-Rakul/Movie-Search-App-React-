@@ -28,13 +28,13 @@ const MovieSliderList = ({ movies, name, type }: MovieListProps) => {
           className={css.sliderNavBtn}
           onClick={() => swiperRef.current?.slidePrev()}
         >
-          {"<"}
+          <img src="/icons/prev.svg" alt="" />
         </button>
         <button
           className={css.sliderNavBtn}
           onClick={() => swiperRef.current?.slideNext()}
         >
-          {">"}
+          <img src="/icons/next.svg" alt="" />
         </button>
       </div>
       <ul>
