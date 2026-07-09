@@ -3,6 +3,7 @@
     padding: 10px 0;   
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 .deskNav {

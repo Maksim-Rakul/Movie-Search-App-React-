@@ -1,77 +1,85 @@
-# React + TypeScript + Vite
+# 🎬 Movie Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[🌐 View Demo](https://movie-search-app-react-six.vercel.app/)
 
-Currently, two official plugins are available:
+## 🎯 About The Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Movie Search App** is an interactive web application designed for convenient searching and viewing information about movies, TV series, and actors. The project was developed to demonstrate frontend development skills and integration with external APIs.
 
-## React Compiler
+The application allows you to:
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Search for movies and TV series by title
+- View detailed information about movies/TV series
+- Get recommendations
+- Explore actor filmography
+- Enjoy a fully responsive design
 
-Note: This will impact Vite dev & build performances.
+**Purpose:** This project was created for portfolio and resume demonstration, showcasing modern frontend development practices and API integration skills.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ⚡️ Key Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🔍 Search & Filtering
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Search movies/TV series by title with debounce optimization
+- Filter by genres
+- Categories: "Popular", "Top Rated", "Now Playing"
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🎥 Movie/TV Series Page
 
-```
+- Detailed information (description, rating, duration, release date)
+- Cast list with navigation to actor pages
+- Recommended movies/TV series
+- Reviews and media content (trailers, posters)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🎭 Actor Page
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Biographical information
+- Complete filmography
+- Media gallery (photos, videos)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🎨 Additional Features
 
-```
+- Fully responsive design for all devices
+- Smooth navigation with React Router
+- Carousels using Swiper
+- Optimized API requests with debounce
+- Error handling and loading states
+
+---
+
+## 🛠 Technologies
+
+### Frontend
+
+| Technology      | Description                                        |
+| --------------- | -------------------------------------------------- |
+| **React 18**    | UI library for building component-based interfaces |
+| **TypeScript**  | Typed JavaScript for better code quality           |
+| **Vite**        | Fast build tool and development server             |
+| **CSS Modules** | Modular component styling with scoped CSS          |
+| **HTML5**       | Semantic markup for accessibility                  |
+
+### Libraries
+
+| Library                 | Purpose                               |
+| ----------------------- | ------------------------------------- |
+| **React Router DOM v6** | Routing and navigation between pages  |
+| **Axios**               | HTTP client for API requests          |
+| **Swiper**              | Touch-enabled sliders and carousels   |
+| **use-debounce**        | Debounce hook for search optimization |
+
+### API
+
+| API          | Description                                         |
+| ------------ | --------------------------------------------------- |
+| **TMDB API** | Open API providing movie, TV series, and actor data |
+
+### Deployment
+
+| Platform   | Link                                                                                    |
+| ---------- | --------------------------------------------------------------------------------------- |
+| **Vercel** | [movie-search-app-react-six.vercel.app](https://movie-search-app-react-six.vercel.app/) |
+
+---
